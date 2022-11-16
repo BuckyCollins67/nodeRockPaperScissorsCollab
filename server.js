@@ -1,3 +1,5 @@
+// TODO: Make TODO list!
+
 const http = require('http');  //allows us access to the internet
 const fs = require('fs')  //gives us access to the file system
 const url = require('url');  //gives us access to url resolution
