@@ -5,7 +5,7 @@
 
 
 // TODO: Generate a random Choice
-
+let compChoice = Math.ceil(Math.random() * 3)
 
 
 // TODO: Determine Winner -Bucky
