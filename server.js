@@ -1,5 +1,23 @@
 // TODO: Make TODO list!
 
+// TODO: Take user imput from HTML document
+
+
+
+// TODO: Generate a random Choice
+
+
+
+// TODO: Determine Winner -Bucky
+
+
+
+// TODO: Return Winner -Bucky
+
+
+
+// TODO: Return results to DOM
+
 const http = require('http');  //allows us access to the internet
 const fs = require('fs')  //gives us access to the file system
 const url = require('url');  //gives us access to url resolution
