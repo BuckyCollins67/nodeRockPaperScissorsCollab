@@ -71,6 +71,7 @@ function determineWinner(playerChoice, compChoice){
 
 
 // TODO: Return results to DOM
+// index.html has 2 h2 tags.  one with ID of 'result', one with ID of 'winOrLose'
 
 
 
