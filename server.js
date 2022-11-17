@@ -1,3 +1,23 @@
+//--------------------SERVER CREATION STARTS HERE--------------------
+const http = require('http');                //allows us access to the internet
+const fs = require('fs')                     //gives us access to the file system
+const url = require('url');                  //gives us access to url resolution
+const querystring = require('querystring');  //allows us to ask for things in the url
+const figlet = require('figlet')             //makes cool asci art
+
+const server = http.createServer((req, res) => {  //server creation starts here!
+
+  const readWrite = (file, contentType) => {
+  fs.readFile(file, function(err, data) {
+    res.writeHead(200, {'Content-Type': contentType});
+    res.write(data);
+    res.end();
+  });
+  }
+
+  const page = url.parse(req.url).pathname;
+  const params = querystring.parse(url.parse(req.url).query);
+  console.log(page);
 
 
 // TODO: Take user input from HTML document
@@ -5,7 +25,7 @@
 
 
 // TODO: Generate a random Choice
-let compChoice = Math.ceil(Math.random() * 3)//returns random number between 1 and 3
+let compChoice = Math.ceil(Math.random() * 3)//returns random number between 1 and 3 and stores it as compChoice
 // TODO: put this code in a function and return rock, paper or scissors.
 // TODO: Assign string of rock, paper, and scissors to value generated.
 
@@ -52,25 +72,6 @@ function determineWinner(playerChoice, compChoice){
 
 // TODO: Return results to DOM
 
-const http = require('http');  //allows us access to the internet
-const fs = require('fs')  //gives us access to the file system
-const url = require('url');  //gives us access to url resolution
-const querystring = require('querystring');  //allows us to ask for things in the url
-const figlet = require('figlet')  //makes cool asci art
-
-const server = http.createServer((req, res) => {  //server creation starts here!
-
-  const readWrite = (file, contentType) => {
-  fs.readFile(file, function(err, data) {
-    res.writeHead(200, {'Content-Type': contentType});
-    res.write(data);
-    res.end();
-  });
-  }
-
-  const page = url.parse(req.url).pathname;
-  const params = querystring.parse(url.parse(req.url).query);
-  console.log(page);
 
 
   switch (page) {
