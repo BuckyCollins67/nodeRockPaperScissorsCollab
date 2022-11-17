@@ -14,6 +14,12 @@ const server = http.createServer((req, res) => {  //server creation starts here!
     res.end();
   });
   }
+  
+  //Generate a random Choice for the comp
+  const generateCompChoice = () => {
+  choice = ['rock', 'paper', 'scissors']
+  return choice[Math.ceil(Math.random() * 3)]
+}
 
   const page = url.parse(req.url).pathname;
   const params = querystring.parse(url.parse(req.url).query);
@@ -21,76 +27,12 @@ const server = http.createServer((req, res) => {  //server creation starts here!
 
 
 // TODO: Take user input from HTML document
-
-
-
-// TODO: Generate a random Choice
-let compChoice = Math.ceil(Math.random() * 3)//returns random number between 1 and 3 and stores it as compChoice
-
-//added 11/17 - this would be in place of Bucky's work, something like
-// else if(page == '/api'){
-  //if('choice' in params){
-    //if(params['choice'] == 'rock' || 'paper' || 'scissors'){
-        //res.writeHead(200...)
-    //}
-  //}
-//}
-
-const objToJson = { //this would push code to client side for conditional
-  computerChoice: compChoice
-}
-res.end(JSON.stringify(objToJson))
-
-
-
 // TODO: put this code in a function and return rock, paper or scissors.
 // TODO: Assign string of rock, paper, and scissors to value generated.
-
-
-
-
 // TODO: Determine Winner -Bucky
 // TODO: Return Winner -Bucky
-function determineWinner(playerChoice, compChoice){
-  if(playerChoice == 'scissors' && compChoice == 'rock'){
-    console.log('You lose!')
-    return 'playerLose'
-  }else if(playerChoice == 'scissors' && compChoice == 'paper'){
-    console.log('You win!')
-    return 'playerWin'
-  }else if(playerChoice == 'scissors' && compChoice == 'scissors'){
-    console.log('It\'s a draw!')
-    return 'playerDraw'
-  }else if(playerChoice == 'rock' && compChoice == 'rock'){
-    console.log('It\'s a draw!')
-    return 'playerDraw'
-  }else if(playerChoice == 'rock' && compChoice == 'paper'){
-    console.log('You lose!')
-    return 'playerLose'
-  }else if(playerChoice == 'rock' && compChoice == 'scissors'){
-    console.log('You win!')
-    return 'playerWin'
-  }else if(playerChoice == 'paper' && compChoice == 'rock'){
-    console.log('You win!')
-    return 'playerWin'
-  }else if(playerChoice == 'paper' && compChoice == 'paper'){
-    console.log('It\'s a draw!')
-    return 'playerDraw'
-  }else if(playerChoice == 'paper' && compChoice == 'scissors'){
-    console.log('You lose!')
-    return 'playerLose'
-  }else{
-    console.log('error')
-  }
-}
-
-
-
-
 // TODO: Return results to DOM
 // index.html has 2 h2 tags.  one with ID of 'result', one with ID of 'winOrLose'
-
-
 
   switch (page) {
     case '/':
@@ -103,16 +45,42 @@ function determineWinner(playerChoice, compChoice){
       readWrite('otherotherpage.html', 'text/html')
       break;
     case '/api':
-      let flipResult = "type 'flip' in the input box"
-      if (params['student']== 'flip') {
-        flipResult = Math.random() <= .5 ? "heads" : "tails"
+       if('selection' in params){
+          const botChoice = generateCompChoice();
+          const playerChoice = params['selection'];
+          if((playerChoice == 'scissors' && botChoice == 'paper') || 
+             (playerChoice == 'rock' && botChoice == 'scissors') || 
+             (playerChoice == 'paper' && botChoice == 'rock')){
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            const objToJson = {
+              message : `You chose ${playerChoice} and the comp chose ${botChoice}`, 
+              result : "You defeated the comp!"
+            }
+            res.end(JSON.stringify(objToJson));
+          }else if((playerChoice == 'scissors' && botChoice == 'rock') || 
+                   (playerChoice == 'paper' && botChoice == 'scissors') || 
+                   (botChoice == 'paper' && playerChoice == 'rock')){
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            const objToJson = {
+              message : `You chose ${playerChoice} and the comp chose ${botChoice}`, 
+              result : "You got beat by the comp!"
+            }
+            res.end(JSON.stringify(objToJson));
+          }else if(playerChoice === botChoice){
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            const objToJson = {
+              message : `You chose ${playerChoice} and the comp chose ${botChoice}`, 
+              result : "Too bad you drawed, you couldn\'t beat a simple bot!"
+            }
+            res.end(JSON.stringify(objToJson)); 
+          }else{
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            const objToJson = {
+              message : 'Invalid input, enter rock, paper or scissors'
+            }
+            res.end(JSON.stringify(objToJson));
+          }
       }
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        const objToJson = {
-          name: flipResult,
-          
-        }
-        res.end(JSON.stringify(objToJson));
       break;
     case '/css/style.css':
       fs.readFile('css/style.css', function(err, data) {
