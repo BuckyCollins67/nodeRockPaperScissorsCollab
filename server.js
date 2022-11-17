@@ -1,18 +1,52 @@
-// TODO: Make TODO list!
 
-// TODO: Take user imput from HTML document
+
+// TODO: Take user input from HTML document
 
 
 
 // TODO: Generate a random Choice
-let compChoice = Math.ceil(Math.random() * 3)
+let compChoice = Math.ceil(Math.random() * 3)//returns random number between 1 and 3
+// TODO: put this code in a function and return rock, paper or scissors.
+// TODO: Assign string of rock, paper, and scissors to value generated.
+
+
 
 
 // TODO: Determine Winner -Bucky
-
-
-
 // TODO: Return Winner -Bucky
+function determineWinner(playerChoice, compChoice){
+  if(playerChoice == 'scissors' && compChoice == 'rock'){
+    console.log('You lose!')
+    return 'playerLose'
+  }else if(playerChoice == 'scissors' && compChoice == 'paper'){
+    console.log('You win!')
+    return 'playerWin'
+  }else if(playerChoice == 'scissors' && compChoice == 'scissors'){
+    console.log('It\'s a draw!')
+    return 'playerDraw'
+  }else if(playerChoice == 'rock' && compChoice == 'rock'){
+    console.log('It\'s a draw!')
+    return 'playerDraw'
+  }else if(playerChoice == 'rock' && compChoice == 'paper'){
+    console.log('You lose!')
+    return 'playerLose'
+  }else if(playerChoice == 'rock' && compChoice == 'scissors'){
+    console.log('You win!')
+    return 'playerWin'
+  }else if(playerChoice == 'paper' && compChoice == 'rock'){
+    console.log('You win!')
+    return 'playerWin'
+  }else if(playerChoice == 'paper' && compChoice == 'paper'){
+    console.log('It\'s a draw!')
+    return 'playerDraw'
+  }else if(playerChoice == 'paper' && compChoice == 'scissors'){
+    console.log('You lose!')
+    return 'playerLose'
+  }else{
+    console.log('error')
+  }
+}
+
 
 
 
