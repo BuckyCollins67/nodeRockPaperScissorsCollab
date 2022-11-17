@@ -26,6 +26,23 @@ const server = http.createServer((req, res) => {  //server creation starts here!
 
 // TODO: Generate a random Choice
 let compChoice = Math.ceil(Math.random() * 3)//returns random number between 1 and 3 and stores it as compChoice
+
+//added 11/17 - this would be in place of Bucky's work, something like
+// else if(page == '/api'){
+  //if('choice' in params){
+    //if(params['choice'] == 'rock' || 'paper' || 'scissors'){
+        //res.writeHead(200...)
+    //}
+  //}
+//}
+
+const objToJson = { //this would push code to client side for conditional
+  computerChoice: compChoice
+}
+res.end(JSON.stringify(objToJson))
+
+
+
 // TODO: put this code in a function and return rock, paper or scissors.
 // TODO: Assign string of rock, paper, and scissors to value generated.
 

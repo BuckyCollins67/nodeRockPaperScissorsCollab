@@ -10,6 +10,20 @@ async function choice(){  //async simplifies promises, makes it more readable
 
 //conditional based on data from server.js
 
+//added 11/17/22
+let botChoice = ""
+if(data.compChoice === 1){
+  botChoice = 'rock'
+} else if(data.compChoice === 2){
+  botChoice = 'paper'
+} else if(data.compChoice === 3){
+  botChoice = 'scissors'
+}
+
+result.textContent = botChoice
+
+//Bucky's conditional to go here
+
   // document.querySelector("#personName").textContent = data.name  //on the dom, replace the person name with the data you got from the fetch
   // document.querySelector("#personStatus").textContent = data.status
   // document.querySelector("#personOccupation").textContent = data.currentOccupation
