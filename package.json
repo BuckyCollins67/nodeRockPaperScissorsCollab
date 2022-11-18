@@ -1,0 +1,23 @@
+{
+  "name": "noderockpaperscissorscollab",
+  "version": "1.0.0",
+  "description": "A collaborative project to learn the ins-and-outs of Node, and GitHub.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuckyCollins67/nodeRockPaperScissorsCollab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BuckyCollins67/nodeRockPaperScissorsCollab/issues"
+  },
+  "homepage": "https://github.com/BuckyCollins67/nodeRockPaperScissorsCollab#readme",
+  "dependencies": {
+    "figlet": "^1.5.2"
+  }
+}
