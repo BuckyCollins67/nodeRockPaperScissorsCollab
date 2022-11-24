@@ -5,6 +5,7 @@ const url = require('url');                  //gives us access to url resolution
 const querystring = require('querystring');  //allows us to ask for things in the url
 const figlet = require('figlet')             //makes cool asci art
 
+
 const server = http.createServer((req, res) => {  //server creation starts here!
 
   const readWrite = (file, contentType) => {
@@ -17,8 +18,16 @@ const server = http.createServer((req, res) => {  //server creation starts here!
   
   //Generate a random Choice for the comp
   const generateCompChoice = () => {
-  choice = ['rock', 'paper', 'scissors']
-  return choice[Math.ceil(Math.random() * 3)]
+  // choice = ['rock', 'paper', 'scissors']
+  // return choice[Math.ceil(Math.random() * 3)]
+let random = Math.random()
+if(random < .33){
+return 'rock'
+} else if (random < .66){
+return 'paper'
+} else {
+return 'scissors'
+}
 }
 
   const page = url.parse(req.url).pathname;
@@ -59,7 +68,7 @@ const server = http.createServer((req, res) => {  //server creation starts here!
             res.end(JSON.stringify(objToJson));
           }else if((playerChoice == 'scissors' && botChoice == 'rock') || 
                    (playerChoice == 'paper' && botChoice == 'scissors') || 
-                   (botChoice == 'paper' && playerChoice == 'rock')){
+                   (playerChoice == 'rock' && botChoice == 'paper')){
             res.writeHead(200, {'Content-Type': 'application/json'});
             const objToJson = {
               message : `You chose ${playerChoice} and the comp chose ${botChoice}`, 
@@ -108,3 +117,8 @@ const server = http.createServer((req, res) => {  //server creation starts here!
 });
 
 server.listen(8000);
+
+
+//user paper can't beat rock
+//user rock can't draw
+//user scissors can't lose

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/BuckyCollins67/nodeRockPaperScissorsCollab#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "figlet": "^1.5.2"
   }
 }
